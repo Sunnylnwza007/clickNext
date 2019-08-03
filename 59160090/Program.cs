@@ -57,7 +57,11 @@ namespace _59160090
                 // Q7
             //showFund2();
                 // Q8
-            showFund3();
+            //showFund3();
+                // Q9
+            //showTaxYear();
+                // Q10
+            showTaxYear2();
 
 
         }
@@ -166,13 +170,15 @@ namespace _59160090
             for (int i =0;i<employee.Length;i++){
                 int deduct = 0;
                 double empfund= 0;
+                double income = 0;
                 if (salary[i]<15000){
                     deduct = (salary[i]*5)/100;
                 }else{
                     deduct = (15000*5)/100;
                 }
+
                 int sumSalary = salary[i]-deduct;
-                double income = 0;
+                
                 if (employee[i].Equals("A") || employee[i].Equals("C") ||employee[i].Equals("E")){
                     income = (double) sumSalary;
                 }else{
@@ -180,9 +186,64 @@ namespace _59160090
                     income = (double)sumSalary - empfund;
                 }
                 Console.WriteLine("Name: "+employee[i]+" Salary: "+salary[i]+" Deduct: "+deduct+" Deduct2: "+empfund+" NetIncome: "+income);
-        
             }
         }
+
+        // Q9
+        static void showTaxYear (){
+            for (int i =0;i<employee.Length;i++){
+                int deduct = 0;
+                if (salary[i]<15000){
+                    deduct = (salary[i]*5)/100;
+                }else{
+                    deduct = (15000*5)/100;
+                }
+                int incomeYear = (salary[i]-deduct)*12;
+                int tax = 0;
+                if (incomeYear<=110000){
+                    tax = 0;
+                }else if (incomeYear<=150000){
+                    tax = 5;
+                }else if (incomeYear<=180000){
+                    tax = 10;
+                }else{
+                    tax = 15;
+                }
+                double tax2 = tax/100;
+                Console.WriteLine("Name: "+employee[i]+" IncomeYear: "+incomeYear+" Tax: "+tax+"%");
+            }
+        }
+
+        // Q10
+        static void showTaxYear2(){
+                int incomeYear = 179999;
+                double sumTax = 0;
+                if (incomeYear < 110000){
+                    
+                }else{
+                    incomeYear -= 110000;
+                if (incomeYear>=40000){
+                    incomeYear-=40000;
+                    sumTax += 40000*0.05;
+                }else{
+                    sumTax += incomeYear*0.10;
+                    incomeYear =0;
+                }
+                if (incomeYear>=30000){
+                    incomeYear-= 30000;
+                    sumTax += 30000*0.10;
+                }else{
+                    sumTax += incomeYear*0.10;
+                    incomeYear=0;
+                }
+                    sumTax += incomeYear*0.15;
+                }
+                
+                
+                
+                Console.WriteLine(sumTax);
+            }
+        
 
     
     }
